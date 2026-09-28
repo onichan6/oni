@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Exchange Landing</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            green: '#10b981',
+                            blue: '#3b82f6',
+                            dark: '#0f172a',
+                            panel: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(15, 23, 42, 1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        
+        .currency-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <nav class="w-full glass sticky top-0 z-50 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-green to-brand-blue flex items-center justify-center text-white shadow-lg shadow-brand-green/20">
+                        <i class="fa-solid fa-right-left"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight text-white">XChange<span class="text-brand-green">Pro</span></span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-brand-green font-medium border-b-2 border-brand-green pb-1">Exchange</a>
+                    <a href="#rates" class="text-gray-400 hover:text-white transition-colors">Rates</a>
+                    <a href="#transactions" class="text-gray-400 hover:text-white transition-colors">History</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="hidden md:block text-gray-300 hover:text-white font-medium">Sign In</button>
+                    <button class="bg-brand-green hover:bg-emerald-400 text-white px-5 py-2 rounded-lg font-medium transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+            
+            <!-- Hero Text -->
+            <div class="w-full lg:w-1/2 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-brand-green text-sm font-medium mb-6">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-green"></span>
+                    </span>
+                    Live Market Active
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+                    The Fastest Way To <br/> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-brand-blue">Trade Crypto</span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0">
+                    Buy and sell your favorite tokens instantly with local payment methods. Secure, fast, and low fees.
+                </p>
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-brand-blue text-xl"></i>
+                        <span class="text-sm text-gray-300">Bank-grade Security</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-brand-green text-xl"></i>
+                        <span class="text-sm text-gray-300">Instant Processing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="w-full lg:w-5/12 max-w-md mx-auto relative z-10">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-green to-brand-blue rounded-3xl blur opacity-20"></div>
+                <div class="glass p-6 md:p-8 rounded-3xl relative border border-white/10 shadow-2xl">
+                    <h2 class="text-xl font-bold text-white mb-6 flex justify-between items-center">
+                        Exchange Crypto
+                        <i class="fa-solid fa-calculator text-gray-500"></i>
+                    </h2>
+
+                    <div class="space-y-4">
+                        <!-- Send Section -->
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50 hover:border-brand-blue/50 transition-colors">
+                            <label class="block text-xs text-gray-400 mb-2">You Send</label>
+                            <div class="flex items-center gap-3">
+                                <input type="number" id="sendAmount" value="130" step="any" class="bg-transparent text-2xl font-bold w-full focus:outline-none text-white">
+                                <select id="sendCurrency" class="currency-select bg-slate-800 border border-slate-600 text-white text-sm rounded-lg pl-3 pr-8 py-2.5 focus:outline-none focus:border-brand-blue font-medium">
+                                    <optgroup label="Fiat (BDT)">
+                                        <option value="bKash">bKash</option>
+                                        <option value="Nagad">Nagad</option>
+                                        <option value="Rocket">Rocket</option>
+                                    </optgroup>
+                                    <optgroup label="Crypto">
+                                        <option value="USDT">USDT</option>
+                                        <option value="USDC">USDC</option>
+                                        <option value="BNB">BNB</option>
+                                        <option value="ETH">ETH</option>
+                                        <option value="SOL">SOLANA</option>
+                                        <option value="GRAM">GRAM</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="mt-2 text-xs font-medium text-gray-500 flex justify-between">
+                                <span id="sendErrorText">Min: 0.1 USD equivalent</span>
+                            </div>
+                        </div>
+
+                        <!-- Swap Icon -->
+                        <div class="flex justify-center -my-3 relative z-20">
+                            <button id="swapBtn" class="bg-brand-panel border-4 border-brand-dark text-white hover:text-brand-green w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:rotate-180">
+                                <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                            </button>
+                        </div>
+
+                        <!-- Receive Section -->
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50 hover:border-brand-green/50 transition-colors">
+                            <label class="block text-xs text-gray-400 mb-2">You Get</label>
+                            <div class="flex items-center gap-3">
+                                <input type="number" id="receiveAmount" readonly class="bg-transparent text-2xl font-bold w-full focus:outline-none text-brand-green">
+                                <select id="receiveCurrency" class="currency-select bg-slate-800 border border-slate-600 text-white text-sm rounded-lg pl-3 pr-8 py-2.5 focus:outline-none focus:border-brand-green font-medium">
+                                    <optgroup label="Crypto">
+                                        <option value="USDT" selected>USDT</option>
+                                        <option value="USDC">USDC</option>
+                                        <option value="BNB">BNB</option>
+                                        <option value="ETH">ETH</option>
+                                        <option value="SOL">SOLANA</option>
+                                        <option value="GRAM">GRAM</option>
+                                    </optgroup>
+                                    <optgroup label="Fiat (BDT)">
+                                        <option value="bKash">bKash</option>
+                                        <option value="Nagad">Nagad</option>
+                                        <option value="Rocket">Rocket</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="mt-2 text-xs font-medium text-gray-400 text-right" id="rateDisplay">
+                                1 USDT = 130.00 BDT
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="exchangeBtn" class="w-full mt-6 bg-gradient-to-r from-brand-green to-emerald-500 hover:from-emerald-400 hover:to-emerald-400 text-slate-900 font-bold py-3.5 rounded-xl shadow-[0_4px_14px_0_rgba(16,185,129,0.39)] transition-all">
+                        Exchange Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="rates" class="py-12 border-y border-white/5 bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-white">Live Exchange Rates</h3>
+                    <p class="text-sm text-gray-400 mt-2">Accurate pricing updated in real-time (Base: BDT)</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <!-- USDT -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">USDT</span>
+                        <span class="text-brand-green font-bold">130.00 ৳</span>
+                    </div>
+                    <!-- USDC -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">USDC</span>
+                        <span class="text-brand-green font-bold">140.00 ৳</span>
+                    </div>
+                    <!-- GRAM (TON) -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-blue-400/20 text-blue-400 flex items-center justify-center mb-3">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">GRAM</span>
+                        <span class="text-brand-green font-bold">140.00 ৳</span>
+                    </div>
+                    <!-- Solana -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3">
+                            <i class="fa-brands fa-space-awesome"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">SOLANA</span>
+                        <span class="text-brand-green font-bold">150.00 ৳</span>
+                    </div>
+                    <!-- Ethereum -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-3">
+                            <i class="fa-brands fa-ethereum text-xl"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">ETH</span>
+                        <span class="text-brand-green font-bold">142.00 ৳</span>
+                    </div>
+                    <!-- BNB -->
+                    <div class="glass p-4 rounded-xl flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+                        <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center mb-3">
+                            <i class="fa-brands fa-btc"></i>
+                        </div>
+                        <span class="font-bold text-white text-sm mb-1">BNB</span>
+                        <span class="text-brand-green font-bold">135.00 ৳</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transactions" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-white">Recent Transactions</h2>
+                    <p class="text-gray-400 mt-2">Latest verified exchanges by our users.</p>
+                </div>
+                <div class="hidden sm:flex items-center gap-2 text-sm text-brand-green bg-brand-green/10 px-3 py-1.5 rounded-full">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+                    </span>
+                    Live Updates
+                </div>
+            </div>
+
+            <div class="glass rounded-2xl overflow-hidden border border-white/10">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse whitespace-nowrap">
+                        <thead>
+                            <tr class="bg-slate-800/80 text-gray-400 text-xs uppercase tracking-wider border-b border-white/5">
+                                <th class="px-6 py-4 font-semibold">User</th>
+                                <th class="px-6 py-4 font-semibold">Sent</th>
+                                <th class="px-6 py-4 font-semibold">Received</th>
+                                <th class="px-6 py-4 font-semibold">Status</th>
+                                <th class="px-6 py-4 font-semibold text-right">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-sm text-gray-300">
+                            <tr class="hover:bg-slate-800/40 transition-colors">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">M</div>
+                                    <span class="font-medium text-white">Mahmud***</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2"><img src="https://placehold.co/20x20/e2136e/ffffff?text=B" class="rounded-full w-5 h-5"> 13,000 bKash</div>
+                                </td>
+                                <td class="px-6 py-4 text-brand-green font-medium">100.00 USDT</td>
+                                <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green text-xs border border-brand-green/20">Completed</span></td>
+                                <td class="px-6 py-4 text-right text-gray-500">Just now</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition-colors">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">S</div>
+                                    <span class="font-medium text-white">Sakib***</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2"><i class="fa-brands fa-ethereum text-gray-400"></i> 2.5 ETH</div>
+                                </td>
+                                <td class="px-6 py-4 text-brand-green font-medium">355.00 Nagad</td>
+                                <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green text-xs border border-brand-green/20">Completed</span></td>
+                                <td class="px-6 py-4 text-right text-gray-500">2 mins ago</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition-colors">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center font-bold text-xs">R</div>
+                                    <span class="font-medium text-white">Rakib***</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-gem text-blue-400"></i> 50 GRAM</div>
+                                </td>
+                                <td class="px-6 py-4 text-brand-green font-medium">7,000 Rocket</td>
+                                <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full bg-yellow-500/10 text-yellow-500 text-xs border border-yellow-500/20"><i class="fa-solid fa-spinner fa-spin mr-1"></i>Processing</span></td>
+                                <td class="px-6 py-4 text-right text-gray-500">5 mins ago</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition-colors">
+                                <td class="px-6 py-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center font-bold text-xs">T</div>
+                                    <span class="font-medium text-white">Tariq***</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2"><img src="https://placehold.co/20x20/f97316/ffffff?text=N" class="rounded-full w-5 h-5"> 15,000 Nagad</div>
+                                </td>
+                                <td class="px-6 py-4 text-brand-green font-medium">100.00 SOL</td>
+                                <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green text-xs border border-brand-green/20">Completed</span></td>
+                                <td class="px-6 py-4 text-right text-gray-500">12 mins ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/5 bg-slate-900/80 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-gray-400">
+                <i class="fa-solid fa-right-left text-brand-green"></i>
+                <span class="font-bold text-white">XChangePro</span> &copy; 2026. All rights reserved.
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-brand-green transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-brand-green transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-brand-green transition-colors">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Define exact rates provided by user (Base is BDT)
+        // e.g. 1 USDT = 130 BDT
+        const exactRates = {
+            'bKash': 1,
+            'Nagad': 1,
+            'Rocket': 1,
+            'USDT': 130.00,
+            'USDC': 140.00,
+            'GRAM': 140.00,
+            'SOL': 150.00,
+            'ETH': 142.00,
+            'BNB': 135.00
+        };
+
+        // Minimum order equivalent is 0.1 USD. 
+        // We will use the USDT rate (130 BDT) as the benchmark for $1.
+        // So 0.1 USD = 13 BDT.
+        const MIN_ORDER_BDT = 13.00;
+
+        // DOM Elements
+        const sendInput = document.getElementById('sendAmount');
+        const receiveInput = document.getElementById('receiveAmount');
+        const sendCurrency = document.getElementById('sendCurrency');
+        const receiveCurrency = document.getElementById('receiveCurrency');
+        const swapBtn = document.getElementById('swapBtn');
+        const sendErrorText = document.getElementById('sendErrorText');
+        const rateDisplay = document.getElementById('rateDisplay');
+        const exchangeBtn = document.getElementById('exchangeBtn');
+
+        // Helper to check if fiat
+        const isFiat = (currency) => ['bKash', 'Nagad', 'Rocket'].includes(currency);
+
+        function validateAndCalculate() {
+            let sendAmt = parseFloat(sendInput.value) || 0;
+            const from = sendCurrency.value;
+            const to = receiveCurrency.value;
+
+            // Logic rule: Usually exchanges don't allow Fiat to Fiat or Crypto to Crypto directly in simple portals, 
+            // but we will allow calculation for all based on base BDT.
+            // If Fiat -> Fiat is selected, we can optionally switch one to USDT.
+            if (isFiat(from) && isFiat(to)) {
+                receiveCurrency.value = 'USDT';
+                return validateAndCalculate();
+            }
+
+            // Calculate BDT equivalent of the sending amount
+            let bdtEquivalent = sendAmt * exactRates[from];
+
+            // Check minimum order (equivalent to 13 BDT / 0.1 USD)
+            let isValid = true;
+            let minAmountNeeded = MIN_ORDER_BDT / exactRates[from];
+            
+            if (bdtEquivalent > 0 && bdtEquivalent < MIN_ORDER_BDT) {
+                isValid = false;
+                sendErrorText.innerHTML = `<span class="text-red-500 font-bold"><i class="fa-solid fa-triangle-exclamation"></i> Min order: ${minAmountNeeded.toFixed(2)} ${from} (0.1 USD)</span>`;
+                sendErrorText.classList.add('animate-pulse');
+                exchangeBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                exchangeBtn.disabled = true;
+            } else {
+                sendErrorText.innerHTML = `Min: ${minAmountNeeded.toFixed(2)} ${from}`;
+                sendErrorText.classList.remove('animate-pulse');
+                exchangeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                exchangeBtn.disabled = false;
+            }
+
+            // Calculate receive amount
+            let receiveAmt = bdtEquivalent / exactRates[to];
+            
+            // Format decimals
+            if (isFiat(to)) {
+                receiveInput.value = receiveAmt.toFixed(2);
+            } else {
+                receiveInput.value = receiveAmt.toFixed(4);
+            }
+
+            // Update rate display text dynamically
+            if (isFiat(from)) {
+                rateDisplay.innerText = `1 ${to} = ${exactRates[to].toFixed(2)} BDT`;
+            } else {
+                rateDisplay.innerText = `1 ${from} = ${exactRates[from].toFixed(2)} BDT`;
+            }
+        }
+
+        // Safely add event listeners to avoid null errors
+        if (swapBtn) {
+            swapBtn.addEventListener('click', () => {
+                if(sendCurrency && receiveCurrency) {
+                    const temp = sendCurrency.value;
+                    sendCurrency.value = receiveCurrency.value;
+                    receiveCurrency.value = temp;
+                    validateAndCalculate();
+                }
+            });
+        }
+
+        if (sendInput) {
+            sendInput.addEventListener('input', validateAndCalculate);
+        }
+        if (sendCurrency) {
+            sendCurrency.addEventListener('change', validateAndCalculate);
+        }
+        if (receiveCurrency) {
+            receiveCurrency.addEventListener('change', validateAndCalculate);
+        }
+
+        // Telegram Checkout System
+        if (exchangeBtn) {
+            exchangeBtn.addEventListener('click', () => {
+                // If button is disabled (due to min limit error), do nothing
+                if (exchangeBtn.disabled || exchangeBtn.classList.contains('cursor-not-allowed')) {
+                    return; 
+                }
+
+                const sendAmt = sendInput.value;
+                const from = sendCurrency.value;
+                const receiveAmt = receiveInput.value;
+                const to = receiveCurrency.value;
+                
+                // এখানে আপনার টেলিগ্রাম ইউজারনেম দিন ( @ ছাড়া )
+                const telegramUsername = "onichan62"; 
+                
+                let rateText = "";
+                if (isFiat(from)) {
+                    rateText = `1 ${to} = ${exactRates[to].toFixed(2)} BDT`;
+                } else {
+                    rateText = `1 ${from} = ${exactRates[from].toFixed(2)} BDT`;
+                }
+
+                // মেসেজের ফরমেট
+                const message = `New Exchange Request 🔄\n\nSending: ${sendAmt} ${from}\nReceiving: ${receiveAmt} ${to}\nRate: ${rateText}\n\nHello, I want to complete this exchange. Please give me the payment details.`;
+                
+                // টেলিগ্রাম লিংক তৈরি এবং ওপেন করা
+                const telegramUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(message)}`;
+                window.open(telegramUrl, '_blank');
+            });
+        }
+
+        // Initial run
+        validateAndCalculate();
+    </script>
+</body>
+</html>
